@@ -1,0 +1,43 @@
+html, body, .main {
+  background-color: #000000 !important;
+  color: #fff !important;
+  height: 100%;
+}
+
+.list {
+  min-height: 60%;
+}
+
+.graphy {
+  min-height: 40%;
+  background-color: #202020;
+}
+
+.col-xs-4 {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #3A3A3A;
+}
+
+.nav {
+  border-bottom: 1px solid #737373;
+}
+
+.chart {
+  min-height: 200px;
+}
+
+#line-chart {
+  min-height: 160px;;
+}
+
+#bar-chart {
+  min-height: 40px;;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #333342;
+  shape-rendering: crispEdges;
+}
