@@ -4,7 +4,7 @@ html, body, .main {
   height: 100%;
 }
 
-.list {
+.stockList {
   min-height: 60%;
 }
 
@@ -31,13 +31,38 @@ html, body, .main {
   min-height: 160px;;
 }
 
+#graph-place-holder {
+  position: absolute;
+  top: 80%;
+  left: 35%;
+  text-align: center;
+  color: #4B4B4B;
+}
+
 #bar-chart {
   min-height: 40px;;
 }
 
 .axis path,
-.axis line {
+.axis line, .axis text {
   fill: none;
-  stroke: #333342;
+  stroke: #4B4B4B;
   shape-rendering: crispEdges;
+}
+
+.stock.active {
+  background-color: #383838;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #202020 !important;
+  color: #B2B2B2 !important;
+}
+
+.nav>li>a.active {
+  color: #FAFAFA !important;
+}
+
+.nav a {
+  color: #B2B2B2 !important;
 }

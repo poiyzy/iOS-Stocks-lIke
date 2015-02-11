@@ -12,38 +12,32 @@
   </head>
   <body>
     <div class="main">
-      <div class="container-fluid list">
-        <div class="row">
-          <div class="col-xs-4">APPL</div>
-          <div class="col-xs-4">118.93</div>
-          <div class="col-xs-4">
-            <span class="label label-success">+ 19.22</span>
-          </div>
-        </div>
+      <div class="container-fluid stockList">
       </div>
 
       <div class="container-fluid graphy">
         <div class="row">
           <ul class="nav nav-pills">
-            <li role="presentation"><a href="#">1D</a></li>
-            <li role="presentation"><a href="#">1W</a></li>
-            <li role="presentation"><a href="#">1M</a></li>
-            <li role="presentation"><a href="#">3M</a></li>
-            <li role="presentation"><a href="#">6M</a></li>
-            <li role="presentation"><a href="#">1Y</a></li>
-            <li role="presentation"><a href="#">2Y</a></li>
+            <li><a href="#" class="period">1W</a></li>
+            <li><a href="#" class="period">1M</a></li>
+            <li><a href="#" class="period">3M</a></li>
+            <li><a href="#" class="period active">6M</a></li>
+            <li><a href="#" class="period">1Y</a></li>
           </ul>
         </div>
 
         <div class="chart">
           <div id="line-chart"></div>
           <div id="bar-chart"></div>
+          <div id="graph-place-holder"></div>
         </div>
       </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js" charset="utf-8"></script>
+    <script src="js/chart.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
   </body>
 </html>
