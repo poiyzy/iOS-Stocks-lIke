@@ -46,6 +46,7 @@ App = (function() {
 
     this.enableClickToSwitch('.stock');
     this.enableClickToSwitch('.period');
+    this.enableRealTimeUpdate('.real-time');
   };
 
   App.prototype.retriveHistoryData = function(symbol, startDate) {
@@ -62,11 +63,13 @@ App = (function() {
       return function(data) {
         $("#graph-place-holder").html(null);
 
-        stockPrices = data.query.results.quote
+        stockPrices = data.query.results.quote.reverse()
 
-        chart = new Chart;
-        chart.drawBarChart(stockPrices);
-        chart.drawLineChart(stockPrices);
+        barChart = new BarChart('#bar-chart');
+        barChart.generate(stockPrices);
+
+        lineChart = new LineChart('#line-chart');
+        lineChart.generate(stockPrices);
       };
     })(this));
   };
@@ -83,6 +86,23 @@ App = (function() {
       }
     })(this));
   };
+
+  App.prototype.enableRealTimeUpdate = function(target) {
+    $(target).click((function(_this) {
+      return function(e) {
+        $('.period').removeClass("active")
+        $(e.currentTarget).addClass("active")
+
+        $("#line-chart").html(null)
+        var lineChart = new LineChart('#line-chart')
+        lineChart.generate([{Close: Math.floor((Math.random() * 100) + 1), Date: moment()._d}])
+
+        setInterval(function() {
+          lineChart.update({Close: Math.floor((Math.random() * 100) + 1), Date: moment()._d})
+        }, 2000)
+      }
+    })(this))
+  }
 
   return App;
 })();
