@@ -58,7 +58,7 @@ LineChart = (function() {
 
     this.xAxis = d3.svg.axis()
                       .scale(this.x)
-                      .ticks(5)
+                      .ticks(3)
                       .tickSize(-this.height)
                       .orient("bottom");
 

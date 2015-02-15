@@ -5,7 +5,7 @@ App = (function() {
   function App() {
     this.initialize()
     this.today = new Date();
-    this.periodStartDate = {"1D": moment().subtract(1, "day").format("YYYY-MM-DD"), "1W": moment().subtract(7, "day").format("YYYY-MM-DD"), "1M": moment().subtract(30, "day").format("YYYY-MM-DD"), "3M": moment().subtract(90, "day").format("YYYY-MM-DD"), "6M": moment().subtract(360, "day").format("YYYY-MM-DD"), "1Y": moment().subtract(365, "day").format("YYYY-MM-DD"), "2Y": moment().subtract(730, "day").format("YYYY-MM-DD")}
+    this.periodStartDate = {"1D": moment().subtract(1, "day").format("YYYY-MM-DD"), "1W": moment().subtract(7, "day").format("YYYY-MM-DD"), "1M": moment().subtract(30, "day").format("YYYY-MM-DD"), "3M": moment().subtract(90, "day").format("YYYY-MM-DD"), "6M": moment().subtract(180, "day").format("YYYY-MM-DD"), "1Y": moment().subtract(365, "day").format("YYYY-MM-DD"), "2Y": moment().subtract(730, "day").format("YYYY-MM-DD")}
   }
 
   App.prototype.initialize = function() {

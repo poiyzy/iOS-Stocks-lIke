@@ -27,15 +27,25 @@
           </ul>
         </div>
 
-        <div class="chart">
-          <div id="line-chart"></div>
-          <div id="bar-chart"></div>
-          <div id="graph-place-holder"></div>
+        <div class="info">
+          <div id="chart">
+            <div id="line-chart"></div>
+            <div id="bar-chart"></div>
+            <div id="graph-place-holder"></div>
+          </div>
         </div>
+
+        <ol class="carousel-indicators">
+          <li data-target="#chart" data-slide-to="0"></li>
+          <li data-target="#chart" data-slide-to="1" class="active"></li>
+          <li data-target="#chart" data-slide-to="2"></li>
+        </ol>
       </div>
     </div>
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- <script src="js/zepto.min.js"></script> -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js" charset="utf-8"></script>
     <script src="js/bar_chart.js" charset="utf-8"></script>

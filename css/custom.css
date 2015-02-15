@@ -23,7 +23,7 @@ html, body, .main {
   border-bottom: 1px solid #737373;
 }
 
-.chart {
+.info {
   min-height: 200px;
 }
 
@@ -40,14 +40,17 @@ html, body, .main {
 }
 
 #bar-chart {
-  min-height: 40px;;
+  min-height: 20px;;
 }
 
 .axis path,
-.axis line, .axis text {
+.axis line {
   fill: none;
   stroke: #4B4B4B;
   shape-rendering: crispEdges;
+}
+.axis text {
+  fill: #4B4B4B;
 }
 
 .stock.active {
@@ -65,4 +68,18 @@ html, body, .main {
 
 .nav a {
   color: #B2B2B2 !important;
+}
+
+.carousel-indicators {
+  bottom: 0 !important;
+  margin-bottom: 5px;
+}
+
+.carousel-indicators .active {
+  background-color: #EFEFEF !important;
+}
+
+.carousel-indicators li {
+  border: 1px solid #4B4B4B !important;
+  background-color: #4B4B4B !important;
 }
