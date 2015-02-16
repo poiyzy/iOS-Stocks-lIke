@@ -12,44 +12,18 @@
   </head>
   <body>
     <div class="main">
-      <div class="container-fluid stockList">
-      </div>
-
-      <div class="container-fluid graphy">
-        <div class="row">
-          <ul class="nav nav-pills">
-            <li><a href="#" class="real-time">RT</a></li>
-            <li><a href="#" class="period">1W</a></li>
-            <li><a href="#" class="period">1M</a></li>
-            <li><a href="#" class="period">3M</a></li>
-            <li><a href="#" class="period active">6M</a></li>
-            <li><a href="#" class="period">1Y</a></li>
-          </ul>
-        </div>
-
-        <div class="info">
-          <div id="chart">
-            <div id="line-chart"></div>
-            <div id="bar-chart"></div>
-            <div id="graph-place-holder"></div>
-          </div>
-        </div>
-
-        <ol class="carousel-indicators">
-          <li data-target="#chart" data-slide-to="0"></li>
-          <li data-target="#chart" data-slide-to="1" class="active"></li>
-          <li data-target="#chart" data-slide-to="2"></li>
-        </ol>
-      </div>
     </div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- <script src="js/zepto.min.js"></script> -->
+    <script src="js/zepto.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js" charset="utf-8"></script>
     <script src="js/bar_chart.js" charset="utf-8"></script>
     <script src="js/line_chart.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
+
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/react-with-addons-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+    <script type="text/jsx" src="src/app-react.js"></script>
   </body>
 </html>
