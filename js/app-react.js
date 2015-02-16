@@ -1,5 +1,6 @@
 var Stock = React.createClass({displayName: "Stock",
-  handleClick: function() {
+  handleClick: function(e) {
+    e.preventDefault();
     $('.stock.active').removeClass('active')
     $(this.getDOMNode()).addClass('active')
     this._owner.props.onSwitchStock(this.props.data.symbol)
@@ -190,6 +191,7 @@ var StockBox = React.createClass({displayName: "StockBox",
   }
 });
 
+React.initializeTouchEvents(true)
 React.render(
   React.createElement(StockBox, null),
   $('body')[0]

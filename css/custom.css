@@ -57,6 +57,10 @@ html, body, .main {
   background-color: #383838;
 }
 
+.stock {
+  cursor: pointer;
+}
+
 .nav>li>a:focus, .nav>li>a:hover {
   background-color: #202020 !important;
   color: #B2B2B2 !important;
