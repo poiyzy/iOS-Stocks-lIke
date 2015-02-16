@@ -94,7 +94,7 @@ var StockChartGraph = React.createClass({
       url: "http://query.yahooapis.com/v1/public/yql?",
       data: {q: 'select * from yahoo.finance.historicaldata where symbol = "' + params.stockSymbol + '" and startDate = "' + params.startDate + '" and endDate = "' + moment().format('YYYY-MM-DD') + '"', format: 'json', diagnostics: true, env: 'store://datatables.org/alltableswithkeys'},
       success: function(data) {
-        this.drawChart(data.query.results.quote)
+        this.drawChart(data.query.results.quote.reverse())
       }.bind(this)
     });
   },

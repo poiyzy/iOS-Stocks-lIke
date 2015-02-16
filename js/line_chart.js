@@ -39,8 +39,13 @@ LineChart = (function() {
 //       d.Close = +d.Close
 //     })
 
+    var maxData = d3.max(data, function(d) { return d.Close; }),
+        minData = d3.min(data, function(d) { return d.Close; })
+
+    var startPoint = (maxData - (maxData - minData) / 0.9)
+
     this.x.domain([data[0].Date, data[data.length - 1].Date]);
-    this.y.domain([0, d3.max(data, function(d) { return d.Close; })]);
+    this.y.domain([startPoint, maxData]);
 
     this.path = this.svg.append("path")
                     .datum(data)
@@ -73,7 +78,7 @@ LineChart = (function() {
         .attr("y", 30)
         .attr("dy", ".35em")
         .attr("fill", '#646464')
-        .text(d3.max(data, function(d) { return d.Close; }))
+        .text(maxData)
 
     this.svg.append("text")
         .attr('class', 'minData')
@@ -81,7 +86,7 @@ LineChart = (function() {
         .attr("y", this.height-10)
         .attr("dy", ".35em")
         .attr("fill", '#646464')
-        .text(d3.min(data, function(d) { return d.Close; }))
+        .text(minData)
 
   }
 
