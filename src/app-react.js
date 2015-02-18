@@ -82,6 +82,16 @@ var StockChartGraph = React.createClass({
     lineChart.generate(data);
   },
 
+  enableRealTimeChart: function() {
+    $("#line-chart").html(null)
+    lineChart = new LineChart('#line-chart')
+    lineChart.generate([{Close: Math.floor((Math.random() * 100) + 1), Date: moment()._d}])
+
+    this.interval = setInterval(function() {
+      lineChart.update({Close: Math.floor((Math.random() * 100) + 1), Date: moment()._d})
+    }, 2000)
+  },
+
   clearChartGraph: function() {
     $('#bar-chart').html(null);
     $('#line-chart').html(null);
@@ -101,7 +111,12 @@ var StockChartGraph = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     this.clearChartGraph()
-    this.fetchData(nextProps)
+    if (nextProps.startDate == "real-time") {
+      this.enableRealTimeChart()
+    } else {
+      clearInterval(this.interval)
+      this.fetchData(nextProps)
+    }
   },
 
   render: function() {
@@ -125,7 +140,7 @@ var StockChartBox = React.createClass({
   },
 
   startDate: function(period) {
-    var periodStartDate = {"1D": moment().subtract(1, "day").format("YYYY-MM-DD"), "1W": moment().subtract(7, "day").format("YYYY-MM-DD"), "1M": moment().subtract(30, "day").format("YYYY-MM-DD"), "3M": moment().subtract(90, "day").format("YYYY-MM-DD"), "6M": moment().subtract(180, "day").format("YYYY-MM-DD"), "1Y": moment().subtract(365, "day").format("YYYY-MM-DD"), "2Y": moment().subtract(730, "day").format("YYYY-MM-DD")}
+    var periodStartDate = {"RT": "real-time", "1W": moment().subtract(7, "day").format("YYYY-MM-DD"), "1M": moment().subtract(30, "day").format("YYYY-MM-DD"), "3M": moment().subtract(90, "day").format("YYYY-MM-DD"), "6M": moment().subtract(180, "day").format("YYYY-MM-DD"), "1Y": moment().subtract(365, "day").format("YYYY-MM-DD"), "2Y": moment().subtract(730, "day").format("YYYY-MM-DD")}
 
     return (
       periodStartDate[period]
