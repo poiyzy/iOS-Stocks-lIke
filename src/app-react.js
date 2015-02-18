@@ -52,7 +52,7 @@ var StockChartNav = React.createClass({
     e.preventDefault();
     $('.period.active').removeClass('active')
     $(e.target).addClass('active')
-    this._owner.props.onSwitchHistoryPeriod($(e.target).html())
+    this.props.onSwitchHistoryPeriod($(e.target).html())
   },
 
   render: function() {
@@ -118,6 +118,12 @@ var StockChartGraph = React.createClass({
 })
 
 var StockChartBox = React.createClass({
+  getInitialState: function() {
+    return {
+      currentHistoryPeriod: "6M"
+    }
+  },
+
   startDate: function(period) {
     var periodStartDate = {"1D": moment().subtract(1, "day").format("YYYY-MM-DD"), "1W": moment().subtract(7, "day").format("YYYY-MM-DD"), "1M": moment().subtract(30, "day").format("YYYY-MM-DD"), "3M": moment().subtract(90, "day").format("YYYY-MM-DD"), "6M": moment().subtract(180, "day").format("YYYY-MM-DD"), "1Y": moment().subtract(365, "day").format("YYYY-MM-DD"), "2Y": moment().subtract(730, "day").format("YYYY-MM-DD")}
 
@@ -126,13 +132,19 @@ var StockChartBox = React.createClass({
     )
   },
 
+  switchHistoryPeriod: function(period) {
+    this.setState({currentHistoryPeriod: period})
+  },
+
   render: function() {
     return (
       <div className="container-fluid graphy">
-        <StockChartNav />
+        <StockChartNav
+          onSwitchHistoryPeriod={this.switchHistoryPeriod}
+        />
 
         <StockChartGraph
-          startDate={this.startDate(this.props.historyPeriod)}
+          startDate={this.startDate(this.state.currentHistoryPeriod)}
           stockSymbol={this.props.stockSymbol}
         />
 
@@ -151,16 +163,11 @@ var StockBox = React.createClass({
     return {
       data: [],
       currentStockSymbol: "YHOO",
-      currentHistoryPeriod: "6M"
     };
   },
 
   switchCurrentStock: function(stockSymbol) {
     this.setState({currentStockSymbol: stockSymbol})
-  },
-
-  switchHistoryPeriod: function(period) {
-    this.setState({currentHistoryPeriod: period})
   },
 
   componentDidMount: function() {
@@ -183,8 +190,6 @@ var StockBox = React.createClass({
         />
         <StockChartBox
           stockSymbol={this.state.currentStockSymbol}
-          historyPeriod={this.state.currentHistoryPeriod}
-          onSwitchHistoryPeriod={this.switchHistoryPeriod}
         />
       </div>
     )
