@@ -84,6 +84,7 @@ var StockChartGraph = React.createClass({
 
   enableRealTimeChart: function() {
     $("#line-chart").html(null)
+    $("#graph-place-holder").html(null);
     lineChart = new LineChart('#line-chart')
     lineChart.generate([{Close: Math.floor((Math.random() * 100) + 1), Date: moment()._d}])
 
