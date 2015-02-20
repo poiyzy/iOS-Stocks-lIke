@@ -111,6 +111,9 @@ var StockChartGraph = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
+    if (nextProps.startDate == this.props.startDate && nextProps.stockSymbol == this.props.stockSymbol) {
+      return
+    }
     this.clearChartGraph()
     if (nextProps.startDate == "real-time") {
       this.enableRealTimeChart()
@@ -118,6 +121,10 @@ var StockChartGraph = React.createClass({
       clearInterval(this.interval)
       this.fetchData(nextProps)
     }
+  },
+
+  componentDidMount: function() {
+    this.fetchData(this.props)
   },
 
   render: function() {
@@ -131,12 +138,30 @@ var StockChartGraph = React.createClass({
       </div>
     )
   }
-})
+});
+
+var StockInfoNav = React.createClass({
+  componentWillReceiveProps: function(nextProps) {
+    $('.carousel-indicators .active').removeClass("active")
+    $('.carousel-indicators .index-' + nextProps.active).addClass("active")
+  },
+
+  render: function() {
+    return (
+      <ol className="carousel-indicators">
+        <li className="index-0"></li>
+        <li className="index-1"></li>
+        <li className="index-2"></li>
+      </ol>
+    )
+  }
+});
 
 var StockChartBox = React.createClass({
   getInitialState: function() {
     return {
-      currentHistoryPeriod: "6M"
+      currentHistoryPeriod: "6M",
+      activedInfoBox: 1
     }
   },
 
@@ -155,20 +180,26 @@ var StockChartBox = React.createClass({
   render: function() {
     return (
       <div className="container-fluid graphy">
-        <StockChartNav
-          onSwitchHistoryPeriod={this.switchHistoryPeriod}
-        />
+        <ReactSwipe
+          continuous={false}
+          startSlide={1}
+          callback={function(index, elem) { this.setState({activedInfoBox: index}) }.bind(this)}
+        >
+          <div>Details Show</div>
+          <div className="chart-box">
+            <StockChartNav
+              onSwitchHistoryPeriod={this.switchHistoryPeriod}
+            />
 
-        <StockChartGraph
-          startDate={this.startDate(this.state.currentHistoryPeriod)}
-          stockSymbol={this.props.stockSymbol}
-        />
+            <StockChartGraph
+              startDate={this.startDate(this.state.currentHistoryPeriod)}
+              stockSymbol={this.props.stockSymbol}
+            />
+          </div>
+          <div>News Show</div>
+        </ReactSwipe>
 
-        <ol className="carousel-indicators">
-          <li data-target="#chart" data-slide-to="0"></li>
-          <li data-target="#chart" data-slide-to="1" className="active"></li>
-          <li data-target="#chart" data-slide-to="2"></li>
-        </ol>
+        <StockInfoNav active={this.state.activedInfoBox} />
       </div>
     )
   }
