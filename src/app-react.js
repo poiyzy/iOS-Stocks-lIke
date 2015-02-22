@@ -75,9 +75,6 @@ var StockChartGraph = React.createClass({
   drawChart: function(data) {
     $("#graph-place-holder").html(null);
 
-    barChart = new BarChart('#bar-chart');
-    barChart.generate(data);
-
     lineChart = new LineChart('#line-chart');
     lineChart.generate(data);
   },
@@ -94,7 +91,6 @@ var StockChartGraph = React.createClass({
   },
 
   clearChartGraph: function() {
-    $('#bar-chart').html(null);
     $('#line-chart').html(null);
     $("#graph-place-holder").html("Retreving Chart...")
   },

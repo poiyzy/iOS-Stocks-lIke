@@ -33,11 +33,10 @@ LineChart = (function() {
     this.data = data
     var parseDate = d3.time.format("%Y-%m-%d").parse;
 
-//     data.forEach(function(d) {
-//       debugger
-//       d.Date = parseDate(d.Date);
-//       d.Close = +d.Close
-//     })
+    data.forEach(function(d) {
+      d.Date = parseDate(d.Date);
+      d.Close = +d.Close
+    })
 
     var maxData = d3.max(data, function(d) { return d.Close; }),
         minData = d3.min(data, function(d) { return d.Close; })
@@ -51,15 +50,11 @@ LineChart = (function() {
                     .datum(data)
                     .attr('class', 'area')
                     .attr("d", this.area)
-                    .attr("fill", "#333")
-                    .attr("opacity", .8)
 
     this.path2 = this.svg.append('path')
                     .datum(data)
                     .attr('class', 'areaLine')
                     .attr('d', this.line)
-                    .attr("fill", "none")
-                    .attr("stroke", "#B4B4B4")
 
     this.xAxis = d3.svg.axis()
                       .scale(this.x)
@@ -76,16 +71,12 @@ LineChart = (function() {
         .attr('class', 'maxData')
         .attr("x", this.width-50)
         .attr("y", 30)
-        .attr("dy", ".35em")
-        .attr("fill", '#646464')
         .text(maxData)
 
     this.svg.append("text")
         .attr('class', 'minData')
         .attr("x", this.width-50)
         .attr("y", this.height-10)
-        .attr("dy", ".35em")
-        .attr("fill", '#646464')
         .text(minData)
 
   }
@@ -108,16 +99,12 @@ LineChart = (function() {
         .attr('class', 'maxData')
         .attr("x", this.width-50)
         .attr("y", 30)
-        .attr("dy", ".35em")
-        .attr("fill", '#646464')
         .text(d3.max(this.data, function(d) { return d.Close; }))
 
     this.svg.append("text")
         .attr('class', 'minData')
         .attr("x", this.width-50)
         .attr("y", this.height-10)
-        .attr("dy", ".35em")
-        .attr("fill", '#646464')
         .text(d3.min(this.data, function(d) { return d.Close; }))
   }
 

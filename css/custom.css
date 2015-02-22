@@ -1,6 +1,5 @@
 html, body, .main {
-  background-color: #000000 !important;
-  color: #fff !important;
+  color: #000 !important;
   height: 100%;
 }
 
@@ -10,17 +9,17 @@ html, body, .main {
 
 .graphy {
   min-height: 40%;
-  background-color: #202020;
+  background-color: #EAEAEA;
 }
 
 .col-xs-4 {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
-  border-bottom: 1px solid #3A3A3A;
+  border-bottom: 1px solid #EAEAEA;
 }
 
 .nav {
-  border-bottom: 1px solid #737373;
+  border-bottom: 1px solid #CBCBCB;
 }
 
 .info {
@@ -28,7 +27,7 @@ html, body, .main {
 }
 
 #line-chart {
-  min-height: 160px;;
+  min-height: 200px;;
 }
 
 #graph-place-holder {
@@ -36,7 +35,7 @@ html, body, .main {
   top: 80%;
   left: 35%;
   text-align: center;
-  color: #4B4B4B;
+  color: #A5A5A5;
 }
 
 #bar-chart {
@@ -46,15 +45,35 @@ html, body, .main {
 .axis path,
 .axis line {
   fill: none;
-  stroke: #4B4B4B;
+  stroke: #CBCBCB;
   shape-rendering: crispEdges;
 }
 .axis text {
-  fill: #4B4B4B;
+  fill: #A5A5A5;
+}
+
+path.area {
+  fill: #B4B4B4;
+  opacity: .8;
+}
+
+path.areaLine {
+  fill: none;
+  stroke: #878787;
+}
+
+text.maxData {
+  dy: .35em;
+  fill: #A0A0A0;
+}
+
+text.minData {
+  dy: .35em;
+  fill: #646464;
 }
 
 .stock.active {
-  background-color: #383838;
+  background-color: #EAEAEA;
 }
 
 .stock {
@@ -62,16 +81,16 @@ html, body, .main {
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
-  background-color: #202020 !important;
-  color: #B2B2B2 !important;
+  background-color: #EAEAEA !important;
+  color: #A5A5A5 !important;
 }
 
 .nav>li>a.active {
-  color: #FAFAFA !important;
+  color: #000 !important;
 }
 
 .nav a {
-  color: #B2B2B2 !important;
+  color: #A5A5A5 !important;
 }
 
 .carousel-indicators {
@@ -80,10 +99,10 @@ html, body, .main {
 }
 
 .carousel-indicators .active {
-  background-color: #EFEFEF !important;
+  background-color: #000 !important;
 }
 
 .carousel-indicators li {
-  border: 1px solid #4B4B4B !important;
-  background-color: #4B4B4B !important;
+  border: 1px solid #A0A0A0 !important;
+  background-color: #A0A0A0 !important;
 }
