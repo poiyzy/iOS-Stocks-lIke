@@ -75,8 +75,21 @@ var StockChartGraph = React.createClass({
   drawChart: function(data) {
     $("#graph-place-holder").html(null);
 
-    lineChart = new LineChart('#line-chart');
-    lineChart.generate(data);
+    lineChart = new D3Chart('#line-chart');
+    lineChart.generateLineChart(data, 'areaLine1');
+    lineChart.generateLineArea(data, 'area');
+
+    $('.details').html(null)
+    detailsChart = new D3Chart('.details')
+    detailsChart.generateLineChart(data, 'areaLine');
+    detailsChart.generateBarChart(data, 'bar')
+
+    data2 = data.map(function(d, i) { return {Close: (d.Close * Math.random()), Date: d.Date} })
+
+    $('.news').html(null)
+    newsChart = new D3Chart('.news')
+    newsChart.generateLineChart(data2, 'areaLine1');
+    newsChart.generateLineChart(data, 'areaLine2');
   },
 
   enableRealTimeChart: function() {
@@ -181,7 +194,7 @@ var StockChartBox = React.createClass({
           startSlide={1}
           callback={function(index, elem) { this.setState({activedInfoBox: index}) }.bind(this)}
         >
-          <div>Details Show</div>
+          <div className="details">Retriving Data...</div>
           <div className="chart-box">
             <StockChartNav
               onSwitchHistoryPeriod={this.switchHistoryPeriod}
@@ -192,7 +205,7 @@ var StockChartBox = React.createClass({
               stockSymbol={this.props.stockSymbol}
             />
           </div>
-          <div>News Show</div>
+          <div className="news">Retriving Data...</div>
         </ReactSwipe>
 
         <StockInfoNav active={this.state.activedInfoBox} />
@@ -206,6 +219,7 @@ var StockBox = React.createClass({
     return {
       data: [],
       currentStockSymbol: "YHOO",
+      windowOrientation: 0
     };
   },
 
@@ -222,24 +236,39 @@ var StockBox = React.createClass({
         this.setState({data: data.query.results.row})
       }.bind(this)
     });
+
+    window.addEventListener("orientationchange", function() {
+      this.setState({windowOrientation: window.orientation})
+    }.bind(this), false);
   },
 
   render: function() {
-    return (
-      <div className="main">
-        <StockList
-          data={this.state.data}
-          onSwitchStock={this.switchCurrentStock}
-        />
-        <StockChartBox
-          stockSymbol={this.state.currentStockSymbol}
-        />
-      </div>
-    )
+    if (this.state.windowOrientation == 0 || this.state.windowOrientation == 180) {
+      return (
+        <div className="main">
+          <StockList
+            data={this.state.data}
+            onSwitchStock={this.switchCurrentStock}
+          />
+          <StockChartBox
+            stockSymbol={this.state.currentStockSymbol}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <div className="main">
+          <StockChartBox
+            stockSymbol={this.state.currentStockSymbol}
+          />
+        </div>
+      )
+    }
   }
 });
 
 React.initializeTouchEvents(true)
+
 React.render(
   <StockBox />,
   $('body')[0]

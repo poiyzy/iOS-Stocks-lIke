@@ -62,6 +62,20 @@ path.areaLine {
   stroke: #878787;
 }
 
+path.areaLine1 {
+  fill: none;
+  stroke: green;
+}
+
+rect.bar {
+  fill: #6C6C6C;
+}
+
+path.areaLine2 {
+  fill: none;
+  stroke: red;
+}
+
 text.maxData {
   dy: .35em;
   fill: #A0A0A0;
@@ -105,4 +119,8 @@ text.minData {
 .carousel-indicators li {
   border: 1px solid #A0A0A0 !important;
   background-color: #A0A0A0 !important;
+}
+
+.details, .news {
+  min-height: 200px;;
 }
